@@ -9,11 +9,10 @@ commentRouter.use(bodyParser.json());
 
 commentRouter.route('/')
     .get(function(req, res, next){
-    Comment.find(req, query).populate('comment.fullName')
-                            .exec(function(err, dish){
-            if(err) next(err);
-            res.json(dish);
-        });
+    Comment.find({}, function(err, comments){
+        if(err) next(err);
+        res.json(comments);
+    });
     })
     .post(function(req, res, next){
     var comment = req.body;
@@ -28,6 +27,30 @@ commentRouter.route('/')
                       res.end();
                     }
                 });
+    })
+    .delete(function(req, res, next){
+    Comment.remove({}, function(err, resp){
+      if(err) throw err;
+        res.json(resp);
+    })
+    });
+
+commentRouter.route('/:id')
+    .get(function(req, res, next){
+        console.log(req.params.id);
+        var id = req.params.id;
+        Comment.find({_id: id}, function(err, resp){
+            if(err) throw err;
+            res.json(resp);
+        })
+    })
+    .delete(function(req, res, next){
+        console.log(req.params.id);
+        var id = req.params.id;
+        Comment.remove({_id: id}, function(err, resp){
+            if(err) throw err;
+            res.json(resp);
+        })
     });
 
 module.exports = commentRouter;
