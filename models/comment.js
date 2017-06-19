@@ -5,7 +5,7 @@ var comment = new Schcema({
     fullName: String,
     email: String,
     content: String,
-    rating: String,
+    rating: Number,
     myCheckbox: Boolean
 });
 
