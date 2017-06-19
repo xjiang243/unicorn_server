@@ -6,7 +6,8 @@ var comment = new Schcema({
     email: String,
     content: String,
     rating: Number,
-    myCheckbox: Boolean
+    myCheckbox: Boolean,
+    time: String
 });
 
 module.exports = mongoose.model("Comment", comment);

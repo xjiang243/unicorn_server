@@ -17,7 +17,7 @@ commentRouter.route('/')
     .post(function(req, res, next){
     var comment = req.body;
     new Comment({fullName: comment.fullName, email: comment.email, content: comment.content, 
-                rating: comment.rating, myCheckbox: comment.myCheckbox})
+                rating: comment.rating, myCheckbox: comment.myCheckbox, time: comment.time})
                 .save(function (err) {
                     if (err) {
                       res.status(504);
